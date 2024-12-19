@@ -1,0 +1,197 @@
+/* General Styles */
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: #f1fbff; /* Fixed missing "#" for color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar-nav a {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-brand {
+    color: black;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    border-bottom: 2px solid blue;
+}
+
+/* Carousel */
+.carousel-item {
+    height: 100vh;
+    min-height: 300px;
+    color: black;
+}
+
+/* About Us */
+#imgfirst {
+    width: 400px;
+    height: 400px;
+    padding-top: 70px;
+    float: right;
+}
+
+.container {
+    margin-top: 70px;
+}
+
+div#side h2 {
+    color: black;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+div#side {
+    padding-top: 70px;
+    padding-left: 30px;
+    font-size: larger;
+}
+
+/* Section Containers */
+.container1 {
+    margin-bottom: 70px;
+    color: white;
+}
+
+#cards {
+    margin-bottom: 30px;
+}
+
+#sales {
+    margin-bottom: 20px;
+}
+
+.cards {
+    margin-bottom: 30px;
+}
+
+/* Card Styles */
+.card-body h5 {
+    text-transform: uppercase;
+}
+
+/* Buttons */
+.btn.btn-primary {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0b07ff;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.btn.btn-primary:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 255, 0.3);
+}
+
+.btn.btn-light {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.btn.btn-light i {
+    font-size: 24px;
+    color: #000;
+    transition: color 0.3s ease;
+}
+
+.btn.btn-light:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #dcdcdc;
+}
+
+/* Submit Button */
+button#submit {
+    border: none;
+    background-color: blue;
+    padding-top: 10px;
+}
+
+/* Learn More Button */
+.btn.btn-warning {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: blue;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.btn.btn-warning:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 255, 0.3);
+}
+
+/* Footer */
+div#last {
+    text-align: center;
+    height: 40px;
+}
+
+a#top {
+    background-color: blue;
+    margin-left: 94.2%;
+}
+
+/* Forms */
+.form-container {
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Headings */
+h2 {
+    text-transform: uppercase;
+    font-size: x-large;
+}
+
+/* Footer */
+footer {
+    background-color: #f1f1f1;
+    color: black;
+    padding: 30px 0;
+    text-align: center;
+}
+
+footer h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+footer p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
