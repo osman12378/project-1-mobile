@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for form styling */
+        body {
+          background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+          font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+        }
+        .form-container {
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> <span style="color: #0415ad;">M&M</span>TECH</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">Registration Form</h5>
+                </div>
+                <div class="form-container">
+                    <form action="" method="post" onsubmit="return validateForm()">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" name="name" id="name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" name="email" id="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password1">Password:</label>
+                            <input type="password" class="form-control" name="password1" id="password1"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password2">Confirm Password:</label>
+                            <input type="password" class="form-control" name="password2" id="password2"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="tel" class="form-control" name="phone" id="phone" pattern="[0-9]{8}" placeholder="70123456"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="submit">OK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to validate form before submission
+    function validateForm() {
+        // Get form values
+        var password1 = document.getElementById('password1').value;
+        var password2 = document.getElementById('password2').value;
+        var email = document.getElementById('email').value;
+
+        // Check if passwords match
+        if (password1 !== password2) {
+            alert("Passwords do not match!");
+            return false;  // Prevent form submission
+        }
+
+        // Check if email is valid
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address!");
+            return false;  // Prevent form submission
+        }
+
+        return true;  // Allow form submission if everything is valid
+    }
+</script>
+
+</body>
+</html>
+
+<!--
+<?php
+// Include the database connection
+include "conx.php";
+
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+
+    // Ensure all fields are filled
+    if ($_POST["name"] && $_POST["email"] && $_POST["password1"] && $_POST["password2"] && $_POST["phone"]) {
+
+        // Check if passwords match
+        if ($_POST["password1"] != $_POST["password2"]) {
+            echo '<script type="text/javascript"> alert("Both passwords must be the same");</script>';
+        } else {
+
+            // Get the password and check if it is strong
+            $pass = $_POST["password1"];
+            if (!strongPass($pass)) {
+                echo '<script type="text/javascript"> alert("Your password should be 8 characters, with a combination of numbers and letters.") </script>';
+            } else {
+                // Encrypt the password and insert into database
+                $encrypted_pwd = md5($pass);  // Encrypt the password
+                $sql = "INSERT INTO users (email, name, phone, password) VALUES('$_POST[email]', '$_POST[name]', '$_POST[phone]', '$encrypted_pwd')";
+
+                // Execute the query
+                $result = $conn->query($sql);
+                if ($result === TRUE) {
+                    // Success - redirect to login page
+                    echo '<script type="text/javascript"> alert("Registered Successfully"); window.location = "login.php"; </script>';
+                    exit();  // Add exit to stop further code execution
+                } else {
+                    echo "Error: " . $conn->error;
+                }
+            }
+        }
+    }
+    // Close the database connection
+    $conn->close();
+}
+
+// Function to check password strength
+function strongPass($password)
+{
+    $result = false;
+
+    // Check for uppercase, lowercase, number, and special characters
+    $uppercase = preg_match('@[A-Z]@', $password);
+    $lowercase = preg_match('@[a-z]@', $password);
+    $number = preg_match('@[0-9]@', $password);
+    $specialChars = preg_match('@[^\w]@', $password);
+
+    // Ensure password meets criteria
+    if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+        echo '<script type="text/javascript"> alert("Password is not strong enough.") </script>';
+    } else {
+        $result = true;
+    }
+    return $result;
+}
+?>
+-->

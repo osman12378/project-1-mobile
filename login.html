@@ -1,0 +1,151 @@
+<?php
+    include "conx.php";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for form styling */
+        body {
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            border-radius: 20px 20px 0 0;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .card-header h5 {
+            margin-bottom: 0;
+            color: #333;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .btn-primary {
+            border-radius: 8px;
+            width: 100%;
+            background-color: #3498db;
+            border-color: #3498db;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        .form-control {
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        label {
+            color: #333;
+        }
+        .card-body input[type="text"],
+        .card-body input[type="password"] {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"> <span style="color: #0415ad;">M&M</span>TECH</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About Us</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" onclick="location.href='register.html'">Join us</button>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Login</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" action="">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="submit">OK</button>
+                </form>
+                <p class="mt-3 text-center">Don't have an account? <a href="register.html">Register here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+
+session_start();
+
+
+if (isset($_POST['submit'])) {
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+
+        $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) === 1) {
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row['email'] === $_POST['email'] && $row['password'] === $password) {
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['password'] = $row['password'];
+                $_SESSION['phone'] = $row['phone'];
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['usertype'] = $row['usertype'];
+
+                // Redirect based on usertype
+                if ($row['usertype'] == 'admin') {
+                    header("location: admin.php");
+                    exit(); // Add exit after header redirect to prevent further execution
+                } else {
+                    header("location: user.php");
+                    exit(); // Add exit after header redirect to prevent further execution
+                }
+            }
+        }
+    }
+}
+?>
+
+
+</body>
+</html>
